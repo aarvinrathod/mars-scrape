@@ -45,7 +45,7 @@ def scrape():
     df = df.rename(columns={0 : "Mars - Particulars", 1:"Details"})
 
     # Convert dataframe to html
-    html_table = df.to_html()
+    html_table = df.to_html(classes="table")
 
     # High resolution Images List
     hemisphere_img_urls = [

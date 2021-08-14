@@ -12,7 +12,7 @@
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Mars - Whats New!!</h1>
-      <p>Red. Mountains. Craters. Martian. Life?</p>
+      <p>Red. Planet. Mountains. Craters. Life?</p>
       <p><button type="button" href="/scrape" class="btn btn-dark">View Latest Mars Data!</button></p>
     </div>
     <div class="container">
@@ -25,7 +25,7 @@
            <p>{{ mars_data.paragraph }}</p>
          </div>
          <div class = "col">
-          <a> {{ mars_data.table }} </a> 
+          {{ mars_data.table | safe }}
         </div> 
       </div>
     </div>

@@ -48,12 +48,20 @@ def scrape():
     html_table = df.to_html(classes="table")
 
     # High resolution Images List
-    hemisphere_img_urls = [
-                            {"title":"Cerebus", "url":"https://marshemispheres.com/images/f5e372a36edfa389625da6d0cc25d905_cerberus_enhanced.tif_full.jpg"},
-                            {"title":"Schiaparelli", "url":"https://marshemispheres.com/images/3778f7b43bbbc89d6e3cfabb3613ba93_schiaparelli_enhanced.tif_full.jpg"},
-                            {"title":"Syrtis", "url":"https://marshemispheres.com/images/555e6403a6ddd7ba16ddb0e471cadcf7_syrtis_major_enhanced.tif_full.jpg"},
-                            {"title":"Valles", "url":"https://marshemispheres.com/images/b3c7c6c9138f57b4756be9b9c43e3a48_valles_marineris_enhanced.tif_full.jpg"}
-                        ]
+    title = ["cerberus","schiaparelli","syrtis","valles"]
+    url4 = "https://marshemispheres.com/"
+    hempishere_urls = []
+    for x in range(0, len(title)):
+        browser.visit(f"{url4}{title[x]}.html")
+        hem_img_html = browser.html
+        hem_img_soup = bs(hem_img_html, 'html.parser')
+        hem_img_url = hem_img_soup.find('div', attrs={'id':'wide-image'}).find('img', class_="wide-image").get('src')
+        hempishere_urls.append(f"{url4}{hem_img_url}")
+
+    hemisphere_img_urls = []
+    for x in range(0,len(title)):
+        each_dict = {'title':title[x], 'url':hempishere_urls[x]}
+        hemisphere_img_urls.append(each_dict)
 
     final_data = {
         'title' : news_title,
